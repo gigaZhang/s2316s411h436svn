@@ -26,6 +26,7 @@ public class PageEhCacheFilter extends SimplePageCachingFilter {
 	private final static Logger log = Logger.getLogger(PageEhCacheFilter.class);
 
 	private final static String FILTER_URL_PATTERNS = "patterns";
+	// 全局缓存策略
 	private static String[] cacheURLs = null;
 
 	/**
@@ -49,11 +50,22 @@ public class PageEhCacheFilter extends SimplePageCachingFilter {
 
 		String url = request.getRequestURI();
 
-		boolean flag = false;// 缓存标志：若为false不缓存，若为true则缓存。默认值为false
-		String pnc = request.getParameter("SNC");// 提交参数：如果提交参数中包含有SNC参数，则不缓存
-		Object anc = request.getAttribute("SNC");// Attr参数：如果Attr参数中包含有SNC参数，则不缓存
-		if (pnc == null && anc == null) {
-			// 判断是否匹配配置的缓存URL规则
+		// 临时缓存策略标志：若为true则启用服务端缓存，若为false则禁用服务端缓存。默认值为false
+		boolean flag = false;
+		// 临时缓存策略：可以临时改变“全局缓存策略”
+		String pscy = request.getParameter("SCY");// 提交参数：如果提交参数中包含有SCY参数，则启用服务端缓存
+		Object ascy = request.getAttribute("SCY");// Attr参数：如果Attr参数中包含有SCY参数，则启用服务端缓存
+		String pscn = request.getParameter("SCN");// 提交参数：如果提交参数中包含有SCN参数，则禁用服务端缓存
+		Object ascn = request.getAttribute("SCN");// Attr参数：如果Attr参数中包含有SCN参数，则禁用服务端缓存
+		if (pscy != null || ascy != null) {
+			flag = true;// 临时启用服务端缓存
+		}
+		if (pscn != null || ascn != null) {
+			flag = false;// 临时禁用服务端缓存
+		}
+
+		if (pscy == null && ascy == null && pscn == null && ascn == null) {
+			// 全局缓存策略：判断是否匹配配置的缓存URL规则
 			if (cacheURLs != null && cacheURLs.length > 0) {
 				for (String cacheURL : cacheURLs) {
 					if (url.contains(cacheURL.trim())) {
@@ -64,8 +76,7 @@ public class PageEhCacheFilter extends SimplePageCachingFilter {
 			}
 		}
 
-		// 如果包含我们要缓存的url，就缓存该页面，否则执行正常的页面转向
-		if (flag) {// 缓存
+		if (true == flag) {// 启用服务端缓存：缓存当前请求页面
 			String query = request.getQueryString();
 			if (query != null) {
 				if (url.indexOf("?") != -1) {
@@ -74,9 +85,9 @@ public class PageEhCacheFilter extends SimplePageCachingFilter {
 					query = "?" + query;
 				}
 			}
-			log.info("当前请求被缓存：" + url + query);
-			super.doFilter(request, response, chain);// 调用Ehcache进行缓存
-		} else {// 不缓存
+			log.info("当前请求在服务端被缓存：" + url + query);
+			super.doFilter(request, response, chain);// 调用Ehcache进行服务端缓存
+		} else {// 禁用服务端缓存
 			chain.doFilter(request, response);
 		}
 
