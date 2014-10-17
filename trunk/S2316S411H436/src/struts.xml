@@ -5,6 +5,8 @@
 <struts>
 
 
+	<!-- 默认的本地Locale -->
+	<constant name="struts.locale" value="zh_CN" />
 	<!-- 指定Web应用的默认编码，相当于调用request的setCharacterEncoding方法 -->
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<!-- 设置浏览器是否缓存静态内容，默认值为true(生产环境下使用)，开发阶段最好关闭 -->
@@ -17,7 +19,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<!-- 把Action对象交给Spring创建和管理 -->
 	<constant name="struts.objectFactory" value="spring" />
-	<!-- Struts2处理的请求后缀,默认值是action -->
+	<!-- Struts2处理的请求后缀，默认值是action -->
 	<constant name="struts.action.extension" value="do" />
 	
 	<!-- 国际化资源文件
