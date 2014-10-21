@@ -1,6 +1,7 @@
 
 一、导包说明：
-导入此文件夹的所有jar包到classpath中。
+除了commons-logging-1.1.3.jar和javassist-3.11.0.GA.jar，其他jar包都导入到classpath中。
+（原因：commons-logging-1.1.3.jar在other文件夹中已经有最新的替代包，javassist-3.11.0.GA.jar在h436文件夹中已经有最新的替代包，jar包版本也比这里的高。）
 
 
 二、jar包来源：
