@@ -23,10 +23,8 @@
 	<classpathentry kind="lib" path="lib/s2316/commons-io-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="lib/s2316/commons-logging-1.1.3.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/freemarker-2.3.19.jar"/>
-	<classpathentry kind="lib" path="lib/s2316/javassist-3.11.0.GA.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/ognl-3.0.6.jar"/>
 	<classpathentry kind="lib" path="lib/s2316/struts2-core-2.3.16.3.jar"/>
@@ -59,8 +57,9 @@
 	<classpathentry kind="lib" path="lib/s411/spring-tx-4.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/s411/spring-web-4.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/s411/spring-webmvc-4.1.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="lib/other/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/other/jstl-1.2_1.jar"/>
+	<classpathentry kind="lib" path="lib/other/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/other/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/other/commons-pool-1.6.jar"/>
 	<classpathentry kind="lib" path="lib/other/aspectjweaver-1.8.2.jar"/>
 	<classpathentry kind="lib" path="lib/other/testng-6.8.8.jar"/>
