@@ -5,25 +5,34 @@
 <struts>
 
 
-	<!-- 默认的本地Locale -->
+	<!-- 设置默认的本地Locale。默认值：en_US -->
 	<constant name="struts.locale" value="zh_CN" />
-	<!-- 指定Web应用的默认编码，相当于调用request的setCharacterEncoding方法 -->
+	<!-- 设置默认的字符编码，相当于调用request的setCharacterEncoding方法。默认值：UTF-8 -->
 	<constant name="struts.i18n.encoding" value="UTF-8" />
-	<!-- 设置浏览器是否缓存静态内容，默认值为true(生产环境下使用)，开发阶段最好关闭 -->
+	<!-- 设置客户端浏览器是否可以缓存静态内容。默认值：true（建议上线后启用为true，开发中最好关闭为false） -->
 	<constant name="struts.serve.static.browserCache" value="false" />
-	<!-- 当Struts2的配置文件修改后，系统是否自动重新加载配置文件，默认值为false(生产环境下使用)，开发阶段最好打开 -->
+	<!-- 设置当Struts2的配置文件修改后，系统是否自动重新加载配置文件。默认值：false（建议上线后关闭为false，开发中最好启用为true） -->
 	<constant name="struts.configuration.xml.reload" value="true" />
-	<!-- 开发模式下使用，这样可以打印出更详细的日志信息 -->
+	<!-- 设置当前Struts2是否处于开发模式中，如果是可以打印更多更详细的日志信息。默认值：false（建议上线后关闭为false，开发中最好启用为true） -->
 	<constant name="struts.devMode" value="true" />
-	<!-- 默认的视图主题 -->
+	<!-- 设置Struts2的UI标签默认使用的视图主题，可选值有：simple、xhtml和css_html等三种。默认值：xhtml -->
 	<constant name="struts.ui.theme" value="simple" />
-	<!-- 把Action对象交给Spring创建和管理 -->
+	<!-- 设置把Action对象交给Spring创建和管理。默认值：无（被注释） -->
 	<constant name="struts.objectFactory" value="spring" />
-	<!-- Struts2处理的请求后缀，默认值是action -->
+	<!-- 设置Struts2响应处理的请求后缀。默认值是action -->
 	<constant name="struts.action.extension" value="do" />
 	
-	<!-- 国际化资源文件
+	<!-- 设置是否启用感叹号方式的Action动态方法调用，官网不推荐启用此方式，建议使用通配符方式更好。默认值：false -->
+	<!-- 
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	 -->
+	<!-- 设置全局的国际化资源文件的BaseName名称，多个时则以英文逗号分隔。默认值：无（被注释） -->
+	<!-- 
 	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	 -->
+	<!-- 设置上传中临时文件存放目录。默认值：将使用javax.servlet.context.tempdir的指定目录 -->
+	<!-- 
+	<constant name="struts.multipart.saveDir" value="/mytmp"/>
 	 -->
 
 	
