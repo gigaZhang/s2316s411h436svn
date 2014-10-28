@@ -40,12 +40,19 @@
 		<property name="hibernate.c3p0.idle_test_periodt">10</property>
 		
 
-		<!-- 领域对象：映射文件方式 -->
+		<!-- 领域对象：映射文件配置方式。
+		格式：<mapping resource="列出每一个映射文件的完整路径" />
+		 -->
 		<mapping resource="com/hysd/domain/Customer.hbm.xml" />
 		<mapping resource="com/hysd/domain/Order.hbm.xml" />
 		<mapping resource="com/hysd/domain/Emp.hbm.xml" />
-		<!-- 领域对象：Annotation注解方式
-		<mapping class="实体类全限定名" />
+		<!-- 领域对象：Annotation注解实体类方式。
+		格式：<mapping class="列出每一个注解实体类的全限定名" />
+		 -->
+		<!-- 
+		<mapping class="com.hysd.domain2.Customer2" />
+		<mapping class="com.hysd.domain2.Order2" />
+		<mapping class="com.hysd.domain2.Emp2" />
 		 -->
 		
 		

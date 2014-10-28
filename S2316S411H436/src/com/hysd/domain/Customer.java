@@ -11,9 +11,9 @@ public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id; // id
-	private String name; // 姓名
-	private Set<Order> orders = new HashSet<Order>(); // 其下订单
+	private Integer id; // 客户ID（主键）
+	private String name; // 客户姓名
+	private Set<Order> orders = new HashSet<Order>(); // 客户的所有订单
 
 	public Customer() {
 	}

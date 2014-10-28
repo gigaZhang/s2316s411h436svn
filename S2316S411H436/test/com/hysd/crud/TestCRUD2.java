@@ -31,7 +31,7 @@ public class TestCRUD2 {
 	private HibernateTemplate hibernateTemplate;
 
 
-	// 添加
+	// 添加（如果测试没通过，请检查一下主键生成策略）
 	@Test
 	public void test_save() {
 
@@ -48,7 +48,7 @@ public class TestCRUD2 {
 		System.out.println("id=" + id);
 	}
 
-	// 添加
+	// 添加（如果测试没通过，请检查一下主键生成策略）
 	@Test
 	public void test_persist() {
 		Customer customer = new Customer();
@@ -63,7 +63,7 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 添加
+	// 添加（如果测试没通过，请检查一下主键生成策略）
 	@Test
 	public void test_saveOrUpdate1() {
 		Customer customer = new Customer();
@@ -78,7 +78,8 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 修改
+	// 修改（如果测试没通过，请检查一下主键生成策略，同时检查数据库是否已经存在这条记录）
+	// 因为与其他测试方法存在冲突，需要独立测试（请先注释其他测试方法），测试才会通过
 	@Test
 	public void test_saveOrUpdate2() {
 		Customer customer = new Customer();
@@ -94,7 +95,7 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 修改
+	// 修改（如果测试没通过，请检查数据库是否已经存在这条记录）
 	// 因为与其他测试方法存在冲突，需要独立测试（请先注释其他测试方法），测试才会通过
 	@Test
 	public void test_update() {
@@ -111,7 +112,8 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 修改
+	// 修改（如果测试没通过，请检查数据库是否已经存在这条记录）
+	// 因为与其他测试方法存在冲突，需要独立测试（请先注释其他测试方法），测试才会通过
 	@Test
 	public void test_update_hql() {
 		String hql = "update Customer set name=? where id=?";
@@ -127,7 +129,7 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 删除
+	// 删除（如果测试没通过，请检查数据库是否已经存在这条记录）
 	// 因为与其他测试方法存在冲突，需要独立测试（请先注释其他测试方法），测试才会通过
 	@Test
 	public void test_delete() {
@@ -143,7 +145,7 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 删除
+	// 删除（如果测试没通过，请检查数据库是否已经存在这条记录）
 	@Test
 	public void test_delete_hql() {
 		String hql = "delete from Customer where id=?";
@@ -158,7 +160,7 @@ public class TestCRUD2 {
 		session.close();
 	}
 
-	// 查询
+	// 查询（如果测试没通过，请检查数据库是否已经存在这条记录）
 	@Test
 	public void test_get() {
 		//SessionFactory sessionFactory = HibernateUtils.getSessionFactory();//方式一：没有整合Spring+Hibernate时，需要使用hibernate.cfg.xml手动创建
@@ -171,7 +173,7 @@ public class TestCRUD2 {
 		System.out.println(customer);
 	}
 
-	// 查询
+	// 查询（如果测试没通过，请检查数据库是否已经存在这条记录）
 	// 需要为<class name="Customer" lazy="false">...</class>添加lazy="false"，测试才通过
 	@Test
 	public void test_load() {

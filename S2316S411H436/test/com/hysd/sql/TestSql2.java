@@ -36,7 +36,7 @@ public class TestSql2 {
 		//SessionFactory sessionFactory = HibernateUtils.getSessionFactory();//方式一：没有整合Spring+Hibernate时，需要使用hibernate.cfg.xml手动创建
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();//方式二：整合Spring+Hibernate成功后，可以从Spring容器中直接获取Bean
 		Session session = sessionFactory.openSession();
-		String sql = "select * from emp";
+		String sql = "select * from tb_emp";// 这里的tb_emp是数据库的表名
 		SQLQuery query = session.createSQLQuery(sql);
 		List<Object[]> list = query.list();
 		for (Object[] arr : list) {
@@ -53,7 +53,7 @@ public class TestSql2 {
 		//SessionFactory sessionFactory = HibernateUtils.getSessionFactory();//方式一：没有整合Spring+Hibernate时，需要使用hibernate.cfg.xml手动创建
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();//方式二：整合Spring+Hibernate成功后，可以从Spring容器中直接获取Bean
 		Session session = sessionFactory.openSession();
-		String sql = "select * from emp";
+		String sql = "select * from tb_emp";// 这里的tb_emp是数据库的表名
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addScalar("empno", StandardBasicTypes.INTEGER);
 		query.addScalar("ename", StandardBasicTypes.STRING);
@@ -78,7 +78,7 @@ public class TestSql2 {
 		//SessionFactory sessionFactory = HibernateUtils.getSessionFactory();//方式一：没有整合Spring+Hibernate时，需要使用hibernate.cfg.xml手动创建
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();//方式二：整合Spring+Hibernate成功后，可以从Spring容器中直接获取Bean
 		Session session = sessionFactory.openSession();
-		String sql = "select * from emp";
+		String sql = "select * from tb_emp";// 这里的tb_emp是数据库的表名
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addScalar("empno", StandardBasicTypes.INTEGER);
 		query.addScalar("ename", StandardBasicTypes.STRING);
@@ -101,13 +101,16 @@ public class TestSql2 {
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();//方式二：整合Spring+Hibernate成功后，可以从Spring容器中直接获取Bean
 		Session session = sessionFactory.openSession();
 
-		String sql = "select * from emp";
+		// 方法一：不用别名
+		String sql = "select * from tb_emp";// 这里的tb_emp是数据库的表名
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(Emp.class);
 
-		// String sql = "select {e.*} from emp e";
+		// // 方法二：使用别名
+		// String sql = "select {e.*} from tb_emp e";// 这里的tb_emp是数据库的表名
 		// SQLQuery query = session.createSQLQuery(sql);
 		// query.addEntity("e", Emp.class);
+		
 		query.setCacheable(true); // 设置缓存
 		List<Emp> list = query.list();
 		show(list);
@@ -121,12 +124,14 @@ public class TestSql2 {
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();//方式二：整合Spring+Hibernate成功后，可以从Spring容器中直接获取Bean
 		Session session = sessionFactory.openSession();
 
-		String sql = "select * from emp where  ename like ?";
+		// 方法一：占位参数
+		String sql = "select * from tb_emp where ename like ?";// 这里的tb_emp是数据库的表名
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(Emp.class);
 		query.setString(0, "J%");
 
-		// String sql = "select * from emp where  ename like :ename";
+		// // 方法二：命名参数
+		// String sql = "select * from tb_emp where ename like :ename";// 这里的tb_emp是数据库的表名
 		// SQLQuery query = session.createSQLQuery(sql);
 		// query.addEntity(Emp.class);
 		// query.setString("ename", "J%");

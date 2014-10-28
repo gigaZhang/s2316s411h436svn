@@ -9,7 +9,7 @@ public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id; // id
+	private Integer id; // 订单ID（主键）
 	private String orderNumber; // 订单号
 	private Customer customer; // 所属客户
 
