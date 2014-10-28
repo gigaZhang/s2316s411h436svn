@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 雇员
+ * 雇员（员工）
  */
 public class Emp implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer empno; // 雇员编号
+	private Integer empno; // 雇员编号（主键）
 	private String ename; // 雇员姓名
 	private String job; // 工作
 	private Integer mgr; // 上级雇员的编号

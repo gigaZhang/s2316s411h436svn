@@ -41,23 +41,7 @@
 	 
 	
 
-	<!-- 配置Hibernate的数据源代理工厂：方法一，使用p属性通配符，按文件名搜索匹配的映射文件 -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:mappingLocations="classpath*:/com/**/*.hbm.xml">
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
-				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
-				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
-			</props>
-		</property>
-	</bean>
-	<!-- 配置Hibernate的数据源代理工厂：方法二，使用list集合，按文件名搜索匹配的映射文件 -->
-	<!-- 
+	<!-- 配置Hibernate的数据源代理工厂：方法一（适用于源码或Jar包中的映射文件方式），使用mappingLocations属性的list集合指定所有匹配的映射文件（源码中可使用通配符，Jar包中不支持通配符必须一一列出，当只有一个时还可以使用p:mappingLocations方式），按文件名搜索匹配的映射文件 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		p:dataSource-ref="dataSource">
 		<property name="mappingLocations">
@@ -77,11 +61,15 @@
 			</props>
 		</property>
 	</bean>
-	 -->
-	<!-- 配置Hibernate的数据源代理工厂：方法三，使用p属性通配符，按目录搜索映射文件 -->
+	<!-- 配置Hibernate的数据源代理工厂：方法二（适用于源码中的映射文件方式），使用mappingDirectoryLocations属性的list集合指定映射文件的所在目录（支持通配符，只有一个时还可以使用p:mappingDirectoryLocations方式），按目录搜索映射文件 -->
 	<!-- 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:mappingDirectoryLocations="classpath*:/com/**/domain">
+		p:dataSource-ref="dataSource">
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/com/**/domain</value>
+			</list>
+		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -95,12 +83,83 @@
 		</property>
 	</bean>
 	 -->
-	<!-- 配置Hibernate的数据源代理工厂：方法四，使用hibernate.cfg.xml -->
+	<!-- 配置Hibernate的数据源代理工厂：方法三（适用于源码或Jar包中的映射文件方式），使用mappingResources属性的list集合列出每一个映射文件的完整路径（不支持通配符，必须一一列出，只有一个时还可以使用p:mappingResources方式），按文件名搜索匹配的映射文件 -->
+	<!-- 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="mappingResources">
+			<list>
+				<value>com/hysd/domain/Customer.hbm.xml</value>
+				<value>com/hysd/domain/Emp.hbm.xml</value>
+				<value>com/hysd/domain/Order.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	<!-- 配置Hibernate的数据源代理工厂：方法四（适用于源码中的注解实体类方式），使用packagesToScan属性的list集合指出扫描哪些包中的注解实体类（支持通配符，只有一个时还可以使用p:packagesToScan方式），按注解类所在包搜索实体类 -->
+	<!-- 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="packagesToScan">
+			<list>
+				<value>com.**.domain2</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	<!-- 配置Hibernate的数据源代理工厂：方法五（适用于源码或Jar包中的注解实体类方式），使用annotatedClasses属性的list集合列出每一个注解实体类的全限定名（不支持通配符，必须一一列出，只有一个时还可以使用p:annotatedClasses方式），添加注解实体类 -->
+	<!-- 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="annotatedClasses">
+			<list>
+				<value>com.hysd.domain2.Customer2</value>
+				<value>com.hysd.domain2.Emp2</value>
+				<value>com.hysd.domain2.Order2</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	<!-- 配置Hibernate的数据源代理工厂：方法六（适用于源码或Jar包中的映射文件或注解实体类，可以同时混合使用），使用Hibernate提取出来的配置文件hibernate.cfg.xml -->
 	<!-- 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		p:dataSource-ref="dataSource" p:configLocation="classpath:hibernate.cfg.xml">
 	</bean>
 	 -->
+	<!-- 配置Hibernate的数据源代理工厂：方法七，可以同时混合使用前面的六种方法，这里就不再给出配置代码了 -->
 	 
 	 
 
