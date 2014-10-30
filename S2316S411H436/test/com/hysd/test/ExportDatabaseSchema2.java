@@ -41,6 +41,7 @@ public class ExportDatabaseSchema2 {
 		 */
 		export.create(true, true);
 
+		System.exit(0);// 正常退出程序
 	}
 
 }

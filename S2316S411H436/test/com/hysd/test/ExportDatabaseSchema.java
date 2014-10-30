@@ -34,7 +34,8 @@ public class ExportDatabaseSchema {
 		 * 第二个参数：export，是否导出到数据库中生成表(注意：如果表已经存在，也会重新生成表，表中的原有数据就会被清除)
 		 */
 		export.create(true, true);
-
+		
+		System.exit(0);// 正常退出程序
 	}
 
 }
