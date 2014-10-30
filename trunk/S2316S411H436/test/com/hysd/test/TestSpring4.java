@@ -87,6 +87,7 @@ public class TestSpring4 {
 //			e.printStackTrace();
 //		}
 
+		System.exit(0);// 正常退出程序
 	}
 
 }
